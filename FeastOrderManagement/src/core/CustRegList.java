@@ -125,7 +125,6 @@ public class CustRegList extends ArrayList<CustReg> {
                     String name = tokens[1].trim();
                     String phone = tokens[2].trim();
                     String email = tokens[3].trim();
-                    System.out.println(code + name + phone + email);
                     CustReg cr = new CustReg(code, name, phone, email);
                     this.add(cr);
                 }

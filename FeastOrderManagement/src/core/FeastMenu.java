@@ -7,11 +7,12 @@ package core;
  *
  * @author no-solace
  */
-public class FeastMenu {
+public class FeastMenu implements Comparable<FeastMenu> {
 
-    String fstCode, name, price, ingredients;
+    String fstCode, name, ingredients;
+    int price;
 
-    public FeastMenu(String fcode, String name, String price, String ingredients) {
+    public FeastMenu(String fstCode, String name, int price, String ingredients) {
         this.fstCode = fstCode;
         this.name = name;
         this.price = price;
@@ -30,5 +31,10 @@ public class FeastMenu {
     @Override
     public String toString() {
         return fstCode + ", " + name + ", " + price + ", " + ingredients;
+    }
+
+    @Override
+    public int compareTo(FeastMenu o) {
+        return Integer.compare(this.price, o.price);
     }
 }

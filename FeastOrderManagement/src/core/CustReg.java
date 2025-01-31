@@ -3,8 +3,6 @@
  */
 package core;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
-
 /**
  *
  * @author no-solace

@@ -5,6 +5,7 @@ package tools;
 
 import java.util.Scanner;
 import core.CustRegList;
+import core.FeastMenuList;
 
 /**
  *
@@ -107,6 +108,10 @@ public class ConsoleInputter {
         CustRegList cRL = new CustRegList();
         cRL.loadFromFile(fname);
         cRL.printList();
-        cRL.printByName();
+
+        String ffname = "data/FeastMenu.csv";
+        FeastMenuList fML = new FeastMenuList();
+        fML.loadFromFile(ffname);
+        fML.printList();
     }
 }
