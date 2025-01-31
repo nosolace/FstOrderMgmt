@@ -3,11 +3,13 @@
  */
 package core;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
+
 /**
  *
  * @author no-solace
  */
-public class CustReg {
+public class CustReg implements Comparable<CustReg> {
 
     //Thuộc tính của một khách hàng
     private String custCode, custName, phone, email;
@@ -48,6 +50,11 @@ public class CustReg {
         return email;
     }
 
+    public String formatName() {
+        String name = custName.substring(custName.lastIndexOf(" ") + 1, custName.length());
+        return name + ", " + custName.replaceAll(name, "").trim();
+    }
+
     public void setCustName(String custName) {
         custName = custName.trim();
         if (custName.matches("[a-zA-z\\s]{2,25}")) {
@@ -64,6 +71,11 @@ public class CustReg {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(CustReg other) {
+        return this.formatName().compareTo(other.formatName());
     }
 
     @Override

@@ -3,6 +3,8 @@
  */
 package core;
 
+import java.util.Date;
+
 /**
  *
  * @author no-solace
@@ -10,4 +12,6 @@ package core;
 public class FeastOrder {
 
     private String CustCode, fstCode;
+    int numOftables;
+    Date evtDate;
 }

@@ -4,6 +4,7 @@ Tạo công cụ nhập dữ liệu
 package tools;
 
 import java.util.Scanner;
+import core.CustRegList;
 
 /**
  *
@@ -102,5 +103,10 @@ public class ConsoleInputter {
     }
 
     public static void main(String[] args) {
+        String fname = "data/test.txt";
+        CustRegList cRL = new CustRegList();
+        cRL.loadFromFile(fname);
+        cRL.printList();
+        cRL.printByName();
     }
 }

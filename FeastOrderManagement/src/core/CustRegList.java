@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import tools.ConsoleInputter;
 
 /**
@@ -28,9 +29,9 @@ public class CustRegList extends ArrayList<CustReg> {
         //Nhập tên
         CustName = ConsoleInputter.getStr("Input Name", "[a-zA-Z ]{2,25}", "Name cannot be empty and be between 2 - 25 characters!").trim();
         //Nhập số đt
-        phone = ConsoleInputter.getStr("Input Phone", "0[1-9][0-9]{8}", "Phone must contain 10 digits and belong to Vietnam network operator!");
+        phone = ConsoleInputter.getStr("Input Phone", "0[1-9][0-9]{8}", "Phone must contain 10 digits and belong to Vietnam network operator!").trim();
         //Nhập email
-        email = ConsoleInputter.getStr("Input Email", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "Email format: example@domain.com");
+        email = ConsoleInputter.getStr("Input Email", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "Email format: example@domain.com").trim();
     }
 
     public void update() {
@@ -75,6 +76,42 @@ public class CustRegList extends ArrayList<CustReg> {
         }
     }
 
+    public void printList() {
+        if (this.isEmpty()) {
+            System.out.println("No one matches the search criteria!");
+        } else {
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.printf("%-8s| %-30s| %-11s| %-30s\n", "Code", "Customer Name", "Phone", "Email");
+            System.out.println("---------------------------------------------------------------------------");
+            for (CustReg cr : this) {
+                System.out.printf("%-8s| %-30s| %-11s| %-30s\n", cr.getCustCode(), cr.formatName(), cr.getPhone(), cr.getEmail());
+            }
+            System.out.println("---------------------------------------------------------------------------");
+        }
+    }
+
+    public void printByName() {
+        /*
+        What do we need here?
+        1. Lấy tên người dùng (Tên not Họ, tên đệm) > split
+        2. Lấy tên đem đi so sánh
+        3. Thêm vào danh sách
+        4. Sắp xếp        
+         */
+        //Người dùng nhập tên cần tìm kiếm
+        String custName = ConsoleInputter.getStr("Input Name").toUpperCase();
+        CustRegList tempList = new CustRegList();//Biến tempList lưu danh sách cần tìm
+        for (CustReg cr : this) {
+            //Biến name lấy TÊN trong Họ và Tên của Customer
+            String name = cr.getCustName().substring(cr.getCustName().lastIndexOf(" ") + 1, cr.getCustName().length()).toUpperCase();
+            if (name.contains(custName)) {//kiểm tra phù hợp thêm vào danh sách
+                tempList.add(cr);
+            }
+        }
+        Collections.sort(tempList);
+        tempList.printList();
+    }
+
     public void loadFromFile(String fname) {
         //Kiểm tra file có tồn tại hay không?
         File f = new File(fname);
@@ -88,6 +125,7 @@ public class CustRegList extends ArrayList<CustReg> {
                     String name = tokens[1].trim();
                     String phone = tokens[2].trim();
                     String email = tokens[3].trim();
+                    System.out.println(code + name + phone + email);
                     CustReg cr = new CustReg(code, name, phone, email);
                     this.add(cr);
                 }
