@@ -31,8 +31,8 @@ public class FeastOrder {
 
     @Override
     public boolean equals(Object obj) {
-        FeastOrder fO = (FeastOrder) obj;
-        return this.orderID == fO.orderID;
+        FeastOrder f = (FeastOrder) obj;
+        return this.orderID == f.orderID;
     }
 
     public static int getCount() {
@@ -70,5 +70,5 @@ public class FeastOrder {
     public void setEvtDate(Date evtDate) {
         this.evtDate = evtDate;
     }
-    
+
 }
