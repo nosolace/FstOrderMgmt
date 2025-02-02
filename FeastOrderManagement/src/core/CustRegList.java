@@ -32,6 +32,11 @@ public class CustRegList extends ArrayList<CustReg> {
         phone = ConsoleInputter.getStr("Input Phone", "0[1-9][0-9]{8}", "Phone must contain 10 digits and belong to Vietnam network operator!").trim();
         //Nhập email
         email = ConsoleInputter.getStr("Input Email", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", "Email format: example@domain.com").trim();
+        //Thêm đối tượng vào danh sách
+        this.add(new CustReg(CustCode, CustName, phone, email));
+        if (ConsoleInputter.getBoolean("Enter new customers")) {
+            this.addRegist();
+        }
     }
 
     public void update() {

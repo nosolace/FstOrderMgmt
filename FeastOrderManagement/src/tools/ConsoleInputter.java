@@ -108,6 +108,7 @@ public class ConsoleInputter {
         CustRegList cRL = new CustRegList();
         cRL.loadFromFile(fname);
         cRL.printList();
+        cRL.addRegist();
 
         String ffname = "data/FeastMenu.csv";
         FeastMenuList fML = new FeastMenuList();

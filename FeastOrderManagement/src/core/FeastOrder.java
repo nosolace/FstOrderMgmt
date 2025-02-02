@@ -70,5 +70,4 @@ public class FeastOrder {
     public void setEvtDate(Date evtDate) {
         this.evtDate = evtDate;
     }
-
 }
