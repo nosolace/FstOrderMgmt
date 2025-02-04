@@ -4,7 +4,7 @@ Tạo công cụ nhập dữ liệu
 package tools;
 
 import java.util.Scanner;
-import core.CustRegList;
+import core.CustomerList;
 import core.FeastMenuList;
 
 /**
@@ -105,14 +105,15 @@ public class ConsoleInputter {
 
     public static void main(String[] args) {
         String fname = "data/test.txt";
-        CustRegList cRL = new CustRegList();
-        cRL.loadFromFile(fname);
-        cRL.printList();
-        cRL.addRegist();
+        CustomerList customers = new CustomerList();
+        customers.loadFromFile(fname);
+        customers.printList();
+        customers.printByName();
 
+        /*
         String ffname = "data/FeastMenu.csv";
         FeastMenuList fML = new FeastMenuList();
         fML.loadFromFile(ffname);
-        fML.printList();
+        fML.printList();*/
     }
 }

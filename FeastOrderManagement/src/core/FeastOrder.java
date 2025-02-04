@@ -14,14 +14,14 @@ public class FeastOrder {
     private static int count = 0;
     private int orderID;
     private String custCode, fstCode;
-    private int numOftables;
+    private int numOfTables;
     private Date evtDate;
 
     public FeastOrder(String custCode, String fstCode, int numOftables, Date evtDate) {
         this.orderID = ++count;
         this.custCode = custCode;
         this.fstCode = fstCode;
-        this.numOftables = numOftables;
+        this.numOfTables = numOftables;
         this.evtDate = evtDate;
     }
 
@@ -52,7 +52,7 @@ public class FeastOrder {
     }
 
     public int getNumOftables() {
-        return numOftables;
+        return numOfTables;
     }
 
     public Date getEvtDate() {
@@ -64,7 +64,7 @@ public class FeastOrder {
     }
 
     public void setNumOftables(int numOftables) {
-        this.numOftables = numOftables;
+        this.numOfTables = numOftables;
     }
 
     public void setEvtDate(Date evtDate) {

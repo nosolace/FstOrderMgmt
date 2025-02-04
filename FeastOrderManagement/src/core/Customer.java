@@ -7,33 +7,33 @@ package core;
  *
  * @author no-solace
  */
-public class CustReg implements Comparable<CustReg> {
+public class Customer implements Comparable<Customer> {
 
     //Thuộc tính của một khách hàng
-    private String custCode, custName, phone, email;
+    private String customerID, custName, phone, email;
 
     //Constructor 4 tham số cho hành vi tạo một đơn đăng ký khách hàng mới
-    public CustReg(String custCode, String custName, String phone, String email) {
-        this.custCode = custCode;
+    public Customer(String custCode, String custName, String phone, String email) {
+        this.customerID = custCode;
         this.custName = custName;
         this.phone = phone;
         this.email = email;
     }
 
     //Constructor 1 tham số cho hành vi equals
-    public CustReg(String custCode) {
-        this.custCode = custCode;
+    public Customer(String custCode) {
+        this.customerID = custCode;
     }
 
     //Override hành vi equals, cùng custCode thì bằng nhau
     @Override
     public boolean equals(Object obj) {
-        CustReg cr = (CustReg) obj;
-        return this.custCode.equals(cr.custCode);
+        Customer customer = (Customer) obj;
+        return this.customerID.equals(customer.customerID);
     }
 
-    public String getCustCode() {
-        return custCode;
+    public String getCustomerCode() {
+        return customerID;
     }
 
     public String getCustName() {
@@ -72,12 +72,12 @@ public class CustReg implements Comparable<CustReg> {
     }
 
     @Override
-    public int compareTo(CustReg other) {
+    public int compareTo(Customer other) {
         return this.formatName().compareTo(other.formatName());
     }
 
     @Override
     public String toString() {
-        return custCode + ", " + custName + ", " + phone + ", " + email;
+        return customerID + ", " + custName + ", " + phone + ", " + email;
     }
 }
