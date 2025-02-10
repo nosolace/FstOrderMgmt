@@ -3,9 +3,11 @@ Tạo công cụ nhập dữ liệu
  */
 package tools;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
-import core.CustomerList;
-import core.FeastMenuList;
 
 /**
  *
@@ -16,7 +18,7 @@ public class ConsoleInputter {
     public static Scanner sc = new Scanner(System.in);
 
     public static boolean getBoolean(String prompt) {
-        System.out.println(prompt + " (Y/N, T/F, 1/0)?: ");
+        System.out.print(prompt + " (Y/N, T/F, 1/0)?: ");
         String data = sc.nextLine().trim().toUpperCase();
         char c = data.charAt(0);
         return c == 'T' || c == 'Y' || c == '1';
@@ -30,7 +32,7 @@ public class ConsoleInputter {
             max = max - min;
         }
         do {
-            System.out.println(prompt + "[" + min + ", " + max + "]: ");
+            System.out.print(prompt + "[" + min + ", " + max + "]: ");
             result = Integer.parseInt(sc.nextLine().trim());
             if (result < min || result > max) {
                 System.out.println("Value range: " + "[" + min + ", " + max + "]");
@@ -78,7 +80,7 @@ public class ConsoleInputter {
     public static int intMenu(Object... options) {
         int n = options.length;
         for (int i = 0; i < n; i++) {
-            System.out.println((i + 1) + " - " + options[i]);
+            System.out.println((i + 1) + " -" + "\n"+ options[i]);
         }
         return getInt("Choice ", 1, n);
     }
@@ -88,32 +90,24 @@ public class ConsoleInputter {
         return options[choice - 1];
     }
 
-    public static String getPhoneNum(String prompt, String errorMsg) {
-        String OperatorVN = "(0[1-9])+([0-9]{8})";
-        String phone;
-        boolean valid;
+    public static Date getDate(String prompt, String dateFormat) {
+        String dateStr;
+        Date d;
+
+        DateFormat formatter = new SimpleDateFormat(dateFormat);
         do {
-            System.out.println(prompt + ": ");
-            phone = sc.nextLine().trim();
-            valid = phone.matches(OperatorVN);
-            if (!valid) {
-                System.out.println(errorMsg);
+            System.out.print(prompt + ": ");
+            dateStr = sc.nextLine().trim();
+            try {
+                d = formatter.parse(dateStr);
+            } catch (ParseException e) {
+                System.out.println("Date format should be " + dateFormat + ".");
+                d = null;
             }
-        } while (!valid);
-        return phone;
+        } while (d == null);
+        return d;
     }
 
     public static void main(String[] args) {
-        String fname = "data/test.txt";
-        CustomerList customers = new CustomerList();
-        customers.loadFromFile(fname);
-        customers.printList();
-        customers.printByName();
-
-        /*
-        String ffname = "data/FeastMenu.csv";
-        FeastMenuList fML = new FeastMenuList();
-        fML.loadFromFile(ffname);
-        fML.printList();*/
     }
 }
