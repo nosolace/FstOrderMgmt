@@ -1,24 +1,27 @@
 /*
-    I really do know that I missing the good old days
+    Lớp mô tả cho một đơn đặt hàng
  */
 package core;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author no-solace
  */
-public class Order {
+public class Order implements Serializable {
 
-    private static int count = 0;
+    protected static int count = 0;
     private int orderID;
     private String customerCode, menuCode;
     private int numOfTables;
     private Date date;
 
     public Order(String customerCode, String menuCode, int numOfTables, Date date) {
-        this.orderID = ++count;
+        Order.count = 1 + Order.count;
+        this.orderID = count;
         this.customerCode = customerCode;
         this.menuCode = menuCode;
         this.numOfTables = numOfTables;
@@ -28,9 +31,13 @@ public class Order {
     // Constructor 1 tham số cho hành vi equal
     public Order(int orderID) {
         this.orderID = orderID;
+        this.customerCode = "unknown";
+        this.menuCode = "unknown";
+        this.date = new Date();
     }
-    
+
     public Order(String customerCode, String menuCode, Date date) {
+        this.orderID = 0;
         this.customerCode = customerCode;
         this.menuCode = menuCode;
         this.date = date;
@@ -39,9 +46,12 @@ public class Order {
     @Override
     public boolean equals(Object obj) {
         Order f = (Order) obj;
-        return this.orderID == f.orderID || (this.customerCode.equals(f.customerCode) && this.menuCode.equals(f.menuCode) && this.date.equals(f.date));
+        if (this.orderID == f.orderID) {
+            return true;
+        } else {
+            return this.customerCode.equals(f.customerCode) && this.menuCode.equals(f.menuCode) && this.date.equals(f.date);
+        }
     }
-
 
     public int getOrderID() {
         return orderID;
@@ -59,12 +69,8 @@ public class Order {
         return numOfTables;
     }
 
-    public Date getEvtDate() {
-        return date;
-    }
-
-    public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
+    public String getEvtDate() {
+        return String.format("%s", new SimpleDateFormat("dd/MM/yyyy").format(date));
     }
 
     public void setMenuCode(String menuCode) {
@@ -78,5 +84,4 @@ public class Order {
     public void setEvtDate(Date evtDate) {
         this.date = evtDate;
     }
-
 }

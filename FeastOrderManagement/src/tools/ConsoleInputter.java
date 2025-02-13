@@ -80,9 +80,22 @@ public class ConsoleInputter {
     public static int intMenu(Object... options) {
         int n = options.length;
         for (int i = 0; i < n; i++) {
-            System.out.println((i + 1) + " -" + "\n"+ options[i]);
+            System.out.println((i + 1) + " - " + options[i]);
         }
         return getInt("Choice ", 1, n);
+    }
+
+    public static int intFeastMenu(Object... options) {
+        int n = options.length;
+        for (int i = 0; i < n; i++) {
+            System.out.println("----------" + " Option " + (i + 1) + " ----------\n" + options[i]);
+        }
+        return getInt("Choice ", 1, n);
+    }
+
+    public static Object objFeastMenu(Object... options) {
+        int choice = intFeastMenu(options);
+        return options[choice - 1];
     }
 
     public static Object objMenu(Object... options) {

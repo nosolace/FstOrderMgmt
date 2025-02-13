@@ -65,9 +65,9 @@ public class Customer implements Comparable<Customer>, Serializable {
             // firstName
             String firstName = tokens[tokens.length - 1];
             // last và middle name
-            String lastMidName = "";
-            for (int i = 0; i <= tokens.length - 2; i++) {
-                lastMidName = lastMidName + tokens[i];
+            String lastMidName = tokens[0];
+            for (int i = 1; i <= tokens.length - 2; i++) {
+                lastMidName = lastMidName + " " + tokens[i];
             }
             return firstName + ", " + lastMidName;
         }
@@ -92,7 +92,9 @@ public class Customer implements Comparable<Customer>, Serializable {
     // Setter Email
     public void setEmail(String email) {
         email = email.trim();
-        this.email = email;
+        if (email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            this.email = email;
+        }
     }
 
     //Hành vi equalTo cho việc sắp xếp
@@ -106,16 +108,10 @@ public class Customer implements Comparable<Customer>, Serializable {
     public String toString() {
         return String.format("%-8s| %-30s| %-11s| %-30s", code, this.formatName(), phone, email);
     }
+
+    //Hành bi getCustomer trả về thông tin cho Order
+    public String getCustomer() {
+        return String.format("%-16s: %s\n%-16s: %s\n%-16s: %s\n%-16s: %s",
+                "Code", code, "Customer name", this.formatName(), "Phone number", phone, "Email", email);
+    }
 }
-/*
-    09/02 Chỉnh sửa
-    Ban đầu, đặt customerName để dễ phân biệt.
-    Nhưng trong quá trình sử dụng
-    customer.getCustomerName lại thành thừa thãi.
-    Không clean code cho lắm nên đành phải chuyển lại thành "name"
-    Mỗi đối tượng gồm các thuộc tính, những thuộc tính này gói gọn trong đối
-    tượng và thuộc về đối tượng đó. Hay nói cách khác, tên của một khách hàng sẽ là
-    tên trong đối tượng đó, và trong quá trình lập trình nếu em quá ngu đặt một cái tên biến
-    nào đó mà mình không hiểu nổi, thì fuking my life
-    
-*/

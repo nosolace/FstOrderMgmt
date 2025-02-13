@@ -31,7 +31,7 @@ public class Menu implements Comparable<Menu> {
         Menu m = (Menu) obj;
         return this.code.equals(m.code);
     }
-    
+
     // Getter code
     public String getCode() {
         return code;

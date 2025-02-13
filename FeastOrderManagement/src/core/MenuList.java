@@ -45,6 +45,7 @@ public class MenuList extends ArrayList<Menu> {
                     //Thêm đối tượng vào danh sách lựa chọn thực đơn
                     this.add(fm);
                 }
+                Collections.sort(this);
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -53,14 +54,13 @@ public class MenuList extends ArrayList<Menu> {
 
     //Hành vi hiển thị thực đơn
     public void displayMenu() {
-        //Setup các thành phần để print format
+        // Ngăn cách giữa các nội
         String seperator = "---------------------------------------------------------------------------";
+        // header cho in các nội dung
         String header = seperator + "\n" + "List of Set Menus for ordering party:" + "\n" + seperator;
         if (this.isEmpty()) {//Cần thực hiện hành vi loadFromFile trước để kiểm tra
             System.out.println("Cannot read data from feastMenu.csv. Please check it.");
         } else {
-            //Sắp xếp thực đơn theo giá
-            Collections.sort(this);
             //In ra header
             System.out.println(header);
             //In ra từng set thực đơn
