@@ -79,7 +79,7 @@ public class CustomerList extends ArrayList<Customer> {
             //Update tên
             String name; //Biến lưu tên update
             do {//Vòng lặp kiểm tra tên, nếu bỏ trống lấy tên cũ
-                name = ConsoleInputter.getStr("Input Name or leave it blank.").trim();//Cho user nhập lại tên Sinh viên
+                name = ConsoleInputter.getStr("Input Name or leave it blank").trim();//Cho user nhập lại tên Sinh viên
                 if (!name.trim().isEmpty() && !name.matches("^[a-zA-Z ]{2,25}")) { //Kiểm tra nếu có tên, và tên không thỏa điều kiện báo lỗi
                     System.out.println("Name must be between 2 and 20 characters!");
                 }
@@ -129,18 +129,18 @@ public class CustomerList extends ArrayList<Customer> {
     public void printByName() {
         // Người dùng nhập tên cần tìm kiếm
         String key = ConsoleInputter.getStr("Input Name", "[a-zA-Z ]{2,25}", "Name cannot be empty and be between 2 - 25 characters!").toUpperCase();
-        if (key.isEmpty()) {
-            System.out.println("Blank"); // cho người dùng nhập lại ? =))
-        } else {
-            CustomerList customers = new CustomerList(); // Biến customers lưu tên khách hàng cần tìm
-            for (Customer customer : this) { // Duyệt từng khách hàng trong list
-                // Kiểm tra tên có chứa tên hay không
-                if (customer.getName().contains(key)) {
-                    customers.add(customer); // Có thì thêm vào danh sách
-                }
+        CustomerList customers = new CustomerList(); // Biến customers lưu tên khách hàng cần tìm
+        for (Customer customer : this) { // Duyệt từng khách hàng trong list
+            // Kiểm tra tên có chứa tên hay không
+            if (customer.getName().toUpperCase().contains(key)) {
+                customers.add(customer); // Có thì thêm vào danh sách
             }
-            Collections.sort(customers); // Sắp xếp danh sách
-            customers.printList(); // In danh sách ra màn hình 
+        }
+        Collections.sort(customers); // Sắp xếp danh sách
+        if (customers.isEmpty()) {
+            System.out.println("No one matches the search criteria!");
+        } else {
+            customers.printList();
         }
     }
 
