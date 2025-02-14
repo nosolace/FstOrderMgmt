@@ -36,11 +36,9 @@ public class OrderMgmt {
 
             switch (choice) {
                 case 1:
-                    boolean willAddCustomer = false;
                     do {
                         customerList.addRegist();
-                        willAddCustomer = ConsoleInputter.getBoolean("Enter new customer");
-                    } while (willAddCustomer == true);
+                    } while (ConsoleInputter.getBoolean("Enter new customer"));
                     isChanged = true;
                     break;
                 /*
