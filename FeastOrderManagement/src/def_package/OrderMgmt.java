@@ -46,11 +46,9 @@ public class OrderMgmt {
                     nên việc thêm adding vào cuối chức năng trông hơi ghê
                  */
                 case 2:
-                    boolean willContinueUpdate = false;
                     do {
                         customerList.update();
-                        willContinueUpdate = ConsoleInputter.getBoolean("Update another customer");
-                    } while (willContinueUpdate == true);
+                    } while (ConsoleInputter.getBoolean("Update another customer"));
                     isChanged = true;
                     break;
                 case 3:

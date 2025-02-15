@@ -10,7 +10,8 @@ import java.io.Serializable;
  * @author no-solace
  */
 public class Customer implements Comparable<Customer>, Serializable {
-
+    
+    
     // Thuộc tính của một khách hàng
     private String code, name, phone, email;
 

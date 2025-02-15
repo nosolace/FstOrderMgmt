@@ -15,22 +15,20 @@ import java.util.Scanner;
  */
 public class ConsoleInputter {
 
+    public static String input() {
+        return sc.nextLine().trim();
+    }
     public static Scanner sc = new Scanner(System.in);
 
     public static boolean getBoolean(String prompt) {
         System.out.print(prompt + " (Y/N, T/F, 1/0)?: ");
-        String data = sc.nextLine().trim().toUpperCase();
+        String data = input().toUpperCase();
         char c = data.charAt(0);
         return c == 'T' || c == 'Y' || c == '1';
     }
 
     public static int getInt(String prompt, int min, int max) {
         int result = 0;
-        if (min > max) {
-            max = min + max;
-            min = max - min;
-            max = max - min;
-        }
         do {
             System.out.print(prompt + "[" + min + ", " + max + "]: ");
             result = Integer.parseInt(sc.nextLine().trim());
@@ -43,11 +41,6 @@ public class ConsoleInputter {
 
     public static double getDouble(String prompt, double min, double max) {
         double result = 0;
-        if (min > max) {
-            max = min + max;
-            min = max - min;
-            max = max - min;
-        }
         do {
             System.out.print(prompt + "[" + min + ", " + max + "]: ");
             result = Double.parseDouble(sc.nextLine().trim());
@@ -106,11 +99,11 @@ public class ConsoleInputter {
     public static Date getDate(String prompt, String dateFormat) {
         String dateStr;
         Date d;
-
         DateFormat formatter = new SimpleDateFormat(dateFormat);
+
         do {
             System.out.print(prompt + ": ");
-            dateStr = sc.nextLine().trim();
+            dateStr = input();
             try {
                 d = formatter.parse(dateStr);
             } catch (ParseException e) {
@@ -121,6 +114,8 @@ public class ConsoleInputter {
         return d;
     }
 
-    public static void main(String[] args) {
+    public static String dateStr(Date date, String dateFormat) {
+        DateFormat formatter = new SimpleDateFormat(dateFormat);
+        return (date == null) ? null : formatter.format(date);
     }
 }

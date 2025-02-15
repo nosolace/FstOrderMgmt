@@ -27,6 +27,7 @@ public class Menu implements Comparable<Menu> {
     }
 
     //Hành vi equals
+    @Override
     public boolean equals(Object obj) {
         Menu m = (Menu) obj;
         return this.code.equals(m.code);

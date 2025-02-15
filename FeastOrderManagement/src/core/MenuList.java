@@ -15,10 +15,6 @@ import java.util.Collections;
  */
 public class MenuList extends ArrayList<Menu> {
 
-    //Constructor không tham số để cho đẹp, vì java có mặc định cái này @@
-    public MenuList() {
-    }
-
     //Hành vi đọc file
     public void loadFromFile(String fname) {
         File f = new File(fname);

@@ -6,6 +6,7 @@ package core;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import tools.ConsoleInputter;
 
 /**
  *
@@ -17,9 +18,9 @@ public class Order implements Serializable {
     private int orderID;
     private String customerCode, menuCode;
     private int numOfTables;
-    private Date date;
+    private String date;
 
-    public Order(String customerCode, String menuCode, int numOfTables, Date date) {
+    public Order(String customerCode, String menuCode, int numOfTables, String date) {
         Order.count = 1 + Order.count;
         this.orderID = count;
         this.customerCode = customerCode;
@@ -33,10 +34,10 @@ public class Order implements Serializable {
         this.orderID = orderID;
         this.customerCode = "unknown";
         this.menuCode = "unknown";
-        this.date = new Date();
+        this.date = "unknown";
     }
 
-    public Order(String customerCode, String menuCode, Date date) {
+    public Order(String customerCode, String menuCode, String date) {
         this.orderID = 0;
         this.customerCode = customerCode;
         this.menuCode = menuCode;
@@ -70,7 +71,7 @@ public class Order implements Serializable {
     }
 
     public String getEvtDate() {
-        return String.format("%s", new SimpleDateFormat("dd/MM/yyyy").format(date));
+        return ConsoleInputter.
     }
 
     public void setMenuCode(String menuCode) {
